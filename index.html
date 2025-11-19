@@ -1,127 +1,236 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bottleneck - Monitor PC Terbaik</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <script src="script.js"></script>
-  <style>@view-transition { navigation: auto; }</style>
- </head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bottleneck - Monitor PC Terbaik</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="script.js"></script>
+    <style>@view-transition { navigation: auto; }</style>
+  </head>
 
- <body><!-- Header -->
-  <header class="header">
-   <div class="nav-container"><a href="#" class="logo" id="storeName">Bottleneck Store</a>
-    <nav>
-     <ul class="nav-menu">
-      <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
-      <li><a href="#" class="nav-link" data-section="products">Produk</a></li>
-      <li><a href="#" class="nav-link" data-section="cart">Keranjang</a></li>
-     </ul>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="nav-container">
+        <a href="#" class="logo" id="storeName">Bottleneck Store</a>
+        <nav>
+          <ul class="nav-menu">
+            <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
+            <li><a href="#" class="nav-link" data-section="products">Produk</a></li>
+            <li><a href="#" class="nav-link" data-section="cart">Keranjang</a></li>
+          </ul>
+        </nav>
+        <div class="search-container">
+          <input type="text" class="search-box" placeholder="Cari monitor..." id="searchInput">
+          <button class="cart-btn" onclick="showCart()">
+            <i class="fa-solid fa-cart-shopping"></i><span class="cart-count" id="cartCount">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Home Section -->
+      <section id="homeSection" class="section">
+        <div class="hero">
+          <div class="hero-content">
+            <h1 id="heroTitle">Monitor PC Terbaik</h1>
+            <p id="heroSubtitle">Kualitas Premium, Harga Terjangkau - Temukan Monitor Impian Anda</p>
+            <button class="cta-btn" onclick="showProducts()">Lihat Produk</button>
+          </div>
+        </div>
+        <div class="products-section">
+          <div class="container">
+            <h2 class="section-title">Produk Unggulan</h2>
+            <div class="products-grid" id="featuredProducts">
+              <!-- Featured products will be loaded here -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Products Section -->
+      <section id="productsSection" class="section hidden">
+        <div class="products-section">
+          <div class="container">
+            <h2 class="section-title">Semua Produk</h2>
+            <div class="filters">
+              <h3 class="filters-title"><i class="fa-solid fa-filter"></i> Filter Produk</h3>
+              <div class="filters-container">
+                
+                <!-- Filter: Ukuran -->
+                <div class="filter-group">
+                  <h4><i class="fa-solid fa-ruler"></i> Ukuran</h4>
+                  <select class="filter-dropdown" id="sizeFilter">
+                    <option value="all">Semua Ukuran</option>
+                    <option value="24">24 Inci</option>
+                    <option value="27">27 Inci</option>
+                    <option value="32">32 Inci</option>
+                  </select>
+                </div>
+
+                <!-- Filter: Kategori -->
+                <div class="filter-group">
+                  <h4><i class="fa-solid fa-desktop"></i> Kategori</h4>
+                  <select class="filter-dropdown" id="categoryFilter">
+                    <option value="all">Semua Kategori</option>
+                    <option value="gaming">Gaming</option>
+                    <option value="professional">Profesional</option>
+                  </select>
+                </div>
+
+                <!-- Filter: Merk -->
+                <div class="filter-group">
+                  <h4><i class="fa-solid fa-tag"></i> Merk</h4>
+                  <select class="filter-dropdown" id="brandFilter">
+                    <option value="all">Semua Merk</option>
+                    <option value="acer">Acer</option>
+                    <option value="dell">Dell</option>
+                    <option value="lg">LG</option>
+                    <option value="msi">MSI</option>
+                    <option value="samsung">Samsung</option>
+                    <option value="xiaomi">Xiaomi</option>
+                  </select>
+                </div>
+
+                <!-- Filter: Harga -->
+                <div class="filter-group">
+                  <h4><i class="fa-solid fa-dollar-sign"></i> Harga</h4>
+                  <select class="filter-dropdown" id="priceFilter">
+                    <option value="all">Semua Harga</option>
+                    <option value="under2">Di bawah 2 Juta</option>
+                    <option value="2to3">2 - 3 Juta</option>
+                    <option value="3to4">3 - 4 Juta</option>
+                    <option value="over4">Di atas 4 Juta</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Reset Filter Button -->
+              <div style="text-align: center; margin-top: 1.5rem;">
+                <button onclick="resetFilters()" style="background: linear-gradient(135deg, #6E6E70, #4E4E50); color: #FFFFFF; border: none; padding: 0.8rem 2rem; border-radius: 25px; cursor: pointer; font-weight: bold; transition: all 0.3s ease;">
+                  <i class="fa-solid fa-trash"></i> Reset Filter
+                </button>
+              </div>
+            </div>
+
+            <!-- All Products Grid -->
+            <div class="products-grid" id="allProducts">
+              <!-- All products will be loaded here -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cart Section -->
+      <section id="cartSection" class="section hidden">
+        <div class="cart-section visible">
+          <div class="container">
+            <h2 class="section-title">Keranjang Belanja</h2>
+            <div class="cart-items" id="cartItems">
+              <!-- Cart items will be loaded here -->
+            </div>
+
+            <!-- Cart footer: total + checkout -->
+            <div class="cart-footer">
+              <div class="cart-total" id="cartTotal">Total: Rp 0</div>
+              <button class="checkout-btn checkout-primary" onclick="checkout()">Pesan Sekarang</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <!-- Footer: About -->
+        <div class="footer-section">
+          <h3>Bottleneck Store</h3>
+          <p>Toko monitor PC terpercaya dengan kualitas terbaik dan harga kompetitif.</p>
+          <div class="social-links">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Footer: Contact -->
+        <div class="footer-section">
+          <h3>Kontak</h3>
+          <p id="contactPhones" class="contact-item">
+            <i class="fa-solid fa-phone contact-icon"></i>
+            <span class="contact-phones">
+              <a href="tel:+6281234567890">+62 812-3456-7890</a><br>
+              <a href="tel:+6289876543210">+62 898-7654-3210</a>
+            </span>
+          </p>
+          <p id="contactEmail" class="contact-item">
+            <i class="fa-solid fa-envelope contact-icon"></i>
+            <a href="mailto:info@bottleneckstore.com">info@bottleneckstore.com</a>
+          </p>
+          <p id="contactLocation" class="contact-item">
+            <i class="fa-solid fa-location-dot contact-icon"></i>
+            Jl. Raya Buncitan 93-103, Dusun Buncitan, Buncitan, Kec. Sedati, Kabupaten Sidoarjo, Jawa Timur 61253
+          </p>
+        </div>
+
+        <!-- Footer: Services -->
+        <div class="footer-section">
+          <h3>Layanan</h3>
+          <a href="#">Garansi Resmi</a>
+          <a href="#">Pengiriman Gratis</a>
+          <a href="#">Return Policy</a>
+          <a href="#">Technical Support</a>
+        </div>
+
+        <!-- Footer: Information -->
+        <div class="footer-section">
+          <h3>Informasi</h3>
+          <a href="#">Tentang Kami</a>
+          <a href="#">Cara Pemesanan</a>
+          <a href="#">FAQ</a>
+          <a href="#">Kebijakan Privasi</a>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>© 2025 Bottleneck Store. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Product Detail Modal -->
+    <div class="modal-overlay" id="productModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="modal-close" onclick="closeProductModal()">×</button>
+        </div>
+        <div class="modal-body" id="modalBody">
+          <!-- Product details will be loaded here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile bottom navigation (visible on small screens) -->
+    <nav class="mobile-nav" aria-label="Navigasi utama (mobile)">
+      <button class="mobile-nav-btn" aria-label="Home" onclick="showSection('home')">
+        <i class="fa-solid fa-house"></i>
+        <span class="mobile-nav-label">Home</span>
+      </button>
+      <button class="mobile-nav-btn" aria-label="Produk" onclick="showProducts()">
+        <i class="fa-solid fa-box"></i>
+        <span class="mobile-nav-label">Produk</span>
+      </button>
+      <button class="mobile-nav-btn" aria-label="Keranjang" onclick="showCart()">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="mobile-nav-label">Keranjang</span>
+        <span class="mobile-cart-count" id="mobileCartCount">0</span>
+      </button>
     </nav>
-    <div class="search-container"><input type="text" class="search-box" placeholder="Cari monitor... (contoh: gaming 27 inch, xiaomi murah, 144hz)" id="searchInput"> <button class="cart-btn" onclick="showCart()"> 🛒 Keranjang <span class="cart-count" id="cartCount">0</span> </button>
-    </div>
-   </div>
-
-  </header><!-- Main Content -->
-  <main class="main-content"><!-- Home Section -->
-   <section id="homeSection" class="section">
-    <div class="hero">
-     <div class="hero-content">
-      <h1 id="heroTitle">Monitor PC Terbaik</h1>
-      <p id="heroSubtitle">Kualitas Premium, Harga Terjangkau - Temukan Monitor Impian Anda</p><button class="cta-btn" onclick="showProducts()">Lihat Produk</button>
-     </div>
-    </div>
-    <div class="products-section">
-     <div class="container">
-      <h2 class="section-title">Produk Unggulan</h2>
-      <div class="products-grid" id="featuredProducts"><!-- Featured products will be loaded here -->
-      </div>
-     </div>
-    </div>
-
-   </section><!-- Products Section -->
-   <section id="productsSection" class="section hidden">
-    <div class="products-section">
-     <div class="container">
-      <h2 class="section-title">Semua Produk</h2>
-      <div class="filters">
-       <h3 class="filters-title"><i class="fa-solid fa-filter"></i> Filter Produk</h3>
-       <div class="filters-container">
-        <div class="filter-group">
-         <h4><i class="fa-solid fa-ruler"></i> Ukuran</h4><select class="filter-dropdown" id="sizeFilter"> <option value="all">Semua Ukuran</option> <option value="24">24 Inci</option> <option value="27">27 Inci</option> <option value="32">32 Inci</option> </select>
-        </div>
-        <div class="filter-group">
-         <h4><i class="fa-solid fa-desktop"></i> Kategori</h4><select class="filter-dropdown" id="categoryFilter"> <option value="all">Semua Kategori</option> <option value="gaming">Gaming</option> <option value="professional">Profesional</option> </select>
-        </div>
-        <div class="filter-group">
-         <h4><i class="fa-solid fa-tag"></i> Merk</h4><select class="filter-dropdown" id="brandFilter"> <option value="all">Semua Merk</option> <option value="xiaomi">Xiaomi</option> <option value="lg">LG</option> <option value="samsung">Samsung</option> <option value="acer">Acer</option> <option value="dell">Dell</option> <option value="msi">MSI</option> </select>
-        </div>
-        <div class="filter-group">
-         <h4><i class="fa-solid fa-dollar-sign"></i> Harga</h4><select class="filter-dropdown" id="priceFilter"> <option value="all">Semua Harga</option> <option value="under2">Di bawah 2 Juta</option> <option value="2to3">2 - 3 Juta</option> <option value="3to4">3 - 4 Juta</option> <option value="over4">Di atas 4 Juta</option> </select>
-        </div>
-       </div>
-       <div style="text-align: center; margin-top: 1.5rem;"><button onclick="resetFilters()" style="background: linear-gradient(135deg, #6E6E70, #4E4E50); color: #FFFFFF; border: none; padding: 0.8rem 2rem; border-radius: 25px; cursor: pointer; font-weight: bold; transition: all 0.3s ease;"><i class="fa-solid fa-trash"></i> Reset Filter </button>
-       </div>
-      </div>
-      <div class="products-grid" id="allProducts"><!-- All products will be loaded here -->
-      </div>
-     </div>
-    </div>
-
-   </section><!-- Cart Section -->
-   <section id="cartSection" class="section hidden">
-    <div class="cart-section visible">
-     <div class="container">
-      <h2 class="section-title">Keranjang Belanja</h2>
-      <div class="cart-items" id="cartItems"><!-- Cart items will be loaded here -->
-      </div>
-      <div class="cart-total" id="cartTotal">
-       Total: Rp 0
-      </div><button class="checkout-btn" onclick="checkout()">Checkout</button>
-     </div>
-    </div>
-   </section>
-
-  </main><!-- Footer -->
-  <footer class="footer">
-   <div class="footer-content">
-    <div class="footer-section">
-     <h3>Bottleneck Store</h3>
-     <p>Toko monitor PC terpercaya dengan kualitas terbaik dan harga kompetitif.</p>
-     <div class="social-links">
-      <a href="#"><i class="fa-brands fa-instagram"></i></a> 
-      <a href="#"><i class="fa-brands fa-facebook"></i></a> 
-      <a href="#"><i class="fa-brands fa-twitter"></i></i></a> 
-      <a href="#"><i class="fa-brands fa-youtube"></i></a>
-     </div>
-    </div>
-
-    <div class="footer-section">
-     <h3>Kontak</h3>
-    <p id="contactPhone" class="contact-item"><i class="fa-solid fa-phone contact-icon"></i> +62 812-3456-7890</p>
-    <p id="contactEmail" class="contact-item"><i class="fa-solid fa-envelope contact-icon"></i> info@bottleneckstore.com</p>
-    <p id="contactLocation" class="contact-item"><i class="fa-solid fa-location-dot contact-icon"></i> Jakarta, Indonesia</p>
-    </div>
-    <div class="footer-section">
-     <h3>Layanan</h3><a href="#">Garansi Resmi</a> <a href="#">Pengiriman Gratis</a> <a href="#">Return Policy</a> <a href="#">Technical Support</a>
-    </div>
-    <div class="footer-section">
-     <h3>Informasi</h3><a href="#">Tentang Kami</a> <a href="#">Cara Pemesanan</a> <a href="#">FAQ</a> <a href="#">Kebijakan Privasi</a>
-    </div>
-   </div>
-   <div class="footer-bottom">
-    <p>© 2024 Bottleneck Store. All rights reserved.</p>
-   </div>
-
-  </footer><!-- Product Detail Modal -->
-  <div class="modal-overlay" id="productModal">
-   <div class="modal-content">
-    <div class="modal-header"><button class="modal-close" onclick="closeProductModal()">×</button>
-    </div>
-    <div class="modal-body" id="modalBody"><!-- Product details will be loaded here -->
-    </div>
-   </div>
-  </div>
+  </body>
 </html>
