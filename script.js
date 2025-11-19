@@ -1,4 +1,3 @@
-
 const products = [
     {
         id: 1,
@@ -189,32 +188,87 @@ const products = [
     {
         id: 7,
         name: "MSI MPG 274URDFW E16M",
-        price: 4299000,
-        specs: "32\" VA, 144Hz, 1ms, QHD",
+        price: 7899000,
+        specs: "27\" Mini LED, 160Hz, 1ms, QHD",
         description: "Monitor Gaming MSI MPG 274URDFW E16M hadir dengan teknologi Mini-LED, Dual Mode yang mendukung UHD 160Hz dan FHD 320Hz, port Type-C dengan daya 98W, serta AI Navigator yang meningkatkan pengalaman bermain game. Layar Rapid IPS 27 inci dengan teknologi Quantum Dot ini menawarkan waktu respons super cepat 0,5ms (GtG, minimum) dan telah tersertifikasi VESA DisplayHDR 1000 untuk performa visual yang luar biasa.",
         category: ["27", "gaming"],
         brand: "msi",
         rating: 4.9,
         image: "https://asset.msi.com/resize/image/global/product/product_174590393635e1022dd8095e48c2385f3de19e4459.png62405b38c58fe0f07fcef2367d8a9ba1/400",
         detailedSpecs: {
-            size: "32 Inci Curved",
-            resolution: "2560 x 1440 (QHD)",
-            panel: "VA",
-            refreshRate: "144Hz",
+            size: "27 Inci",
+            resolution: "3840 2160 (UHD)",
+            panel: "Mini LED",
+            refreshRate: "160Hz",
             responseTime: "1ms (MPRT)",
             connectivity: "HDMI 2.0, DisplayPort 1.2",
             features: "G-Sync Compatible, HDR10",
             warranty: "3 Tahun"
         },
         features: [
-            "Curved 1000R untuk immersive gaming",
-            "QHD resolution untuk detail tajam",
-            "Panel VA dengan contrast ratio 2500:1",
-            "144Hz refresh rate & 1ms response time",
-            "G-Sync Compatible & FreeSync Premium",
-            "HDR10 support untuk visual realistis",
-            "Eye Saver Mode & Flicker Free",
-            "Game Mode dengan berbagai preset"
+            "Mini-LED 1.152 zona",
+            "Rapid IPS + Quantum Dot",
+            "AI Navigator & Gaming Intelligence",
+            "Console Mode",
+            "Windows Dynamic Lighting",
+        ]
+    },
+    {
+        id: 8,
+        name: "MSI Modern MD2412P",
+        price: 1999000,
+        specs: "24\" IPS, 100Hz, FHD",
+        description: "Dengan desain eksterior yang elegan, indah, dan rapi, Modern MD2412 Series didesain dengan bentuk minimalis yang terlihat cocok di ruang dan meja manapun. Menjadi bagian dari furnitur & dekorasi yang elegan dimanapun dibandingkan monitor pada umumnya.",
+        category: ["24", "professional"],
+        brand: "msi",
+        rating: 4.9,
+        image: "https://asset.msi.com/resize/image/global/product/product_16904210277a228ca3f3904fb80233c3e569fa7a2a.png62405b38c58fe0f07fcef2367d8a9ba1/600.png",
+        detailedSpecs: {
+            size: "24 Inci",
+            resolution: "1920 1080 (FHD)",
+            panel: "IPS",
+            refreshRate: "100Hz",
+            responseTime: "1ms (MPRT)",
+            connectivity: "HDMI 2.0, DisplayPort 1.2",
+            features: "Type C display port, HDR",
+            warranty: "3 Tahun"
+        },
+        features: [
+            "Panel IPS 24 Inci dengan Sudut Pandang Luas 178° didesain untuk kualitas gambar yang premium.",
+            "Red Dot Design Award 2021 Winner – Cocokkan dekorasi rumah atau kantor Anda dengan desain yang elegan & trendi.",
+            "Display tersertifikasi TÜV memastikan keamanan dan kesehatan penglihatan mata.",
+            "Koneksi Built-in USB Type-C dengan fungsi pengiriman daya dapat membuat Anda terhubung dan charge perangkat Anda dengan mudah.",
+            "Refresh rate 100 Hz memberikan pengalaman melihat yang lebih baik.",
+            "Dua built-in speakers.",
+        ]
+    },
+        {
+        id: 9,
+        name: "LG 27U411A-B",
+        price: 1799000,
+        specs: "27\" IPS, 120Hz, FHD",
+        description: "Desain ramping. Warna yang sesungguhnya. Layar Full HD (1920x1080) kami menghadirkan visual yang jernih dengan gamut warna sRGB 99% (Typ.) dan kecerahan 250 nits (Typ.) dengan rasio kontras 1500:1.",
+        category: ["27", "professional"],
+        brand: "lg",
+        rating: 4.9,
+        image: "https://www.lg.com/content/dam/channel/wcms/id/monitor/fhd-qhd/27u411a/gallery/gallery/full-hd-qhd-27u411a-2025-gallery-gallery-01.jpg/jcr:content/renditions/thum-1600x1062.jpeg",
+        detailedSpecs: {
+            size: "27 Inci",
+            resolution: "1920 1080 (FHD)",
+            panel: "IPS",
+            refreshRate: "120Hz",
+            responseTime: "1ms (MPRT)",
+            connectivity: "HDMI 2.0, DisplayPort 1.2",
+            features: "HDR 10, sRGB 99%",
+            warranty: "3 Tahun"
+        },
+        features: [
+            "Full HD",
+            "120Hz refresh rate, 1ms Motion Blur Reduction",
+            "4-side virtually borderless design",
+            "HDR 10 / sRGB 99% (Typ.)",
+            "Ergonomic design with -5° to 20° tilt",
+            "Dynamic Action Sync / Black Stabilizer.",
         ]
     },
 ];
@@ -224,11 +278,11 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // Default config
 const defaultConfig = {
-    store_name: "BayHUB Store",
+    store_name: "Bottleneck Store",
     hero_title: "Monitor PC Terbaik",
     hero_subtitle: "Kualitas Premium, Harga Terjangkau - Temukan Monitor Impian Anda",
     contact_phone: "+62 812-3456-7890",
-    contact_email: "info@bayhubstore.com"
+    contact_email: "info@bottleneckstore.com"
 };
 
 // Initialize page
@@ -238,6 +292,15 @@ function init() {
     loadAllProducts();
     setupEventListeners();
     updateCartDisplay();
+}
+
+// Utility: debounce helper to limit how often a function runs
+function debounce(fn, delay) {
+    let timer;
+    return function(...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(this, args), delay);
+    };
 }
 
 // Setup event listeners
@@ -255,17 +318,28 @@ function setupEventListeners() {
         });
     });
 
-    // Search functionality
-    document.getElementById('searchInput').addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        filterProducts(searchTerm);
-    });
+    // Search functionality (debounced) - auto-switch to Produk saat mengetik
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        const debounced = debounce((e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            if (searchTerm.trim()) showProducts();
+            filterProducts(searchTerm);
+        }, 250);
+
+        searchInput.addEventListener('input', debounced);
+    }
 
     // Filter dropdowns
-    document.getElementById('sizeFilter').addEventListener('change', applyFilters);
-    document.getElementById('categoryFilter').addEventListener('change', applyFilters);
-    document.getElementById('brandFilter').addEventListener('change', applyFilters);
-    document.getElementById('priceFilter').addEventListener('change', applyFilters);
+    const sizeFilterEl = document.getElementById('sizeFilter');
+    const categoryFilterEl = document.getElementById('categoryFilter');
+    const brandFilterEl = document.getElementById('brandFilter');
+    const priceFilterEl = document.getElementById('priceFilter');
+    
+    if (sizeFilterEl) sizeFilterEl.addEventListener('change', applyFilters);
+    if (categoryFilterEl) categoryFilterEl.addEventListener('change', applyFilters);
+    if (brandFilterEl) brandFilterEl.addEventListener('change', applyFilters);
+    if (priceFilterEl) priceFilterEl.addEventListener('change', applyFilters);
 
     // Modal close events
     document.getElementById('productModal').addEventListener('click', function(e) {
@@ -287,8 +361,23 @@ function showSection(sectionName) {
     document.querySelectorAll('.section').forEach(section => {
         section.classList.add('hidden');
     });
-    
     document.getElementById(sectionName + 'Section').classList.remove('hidden');
+
+    // Update desktop nav active state
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    const desktopLink = document.querySelector('[data-section="' + (sectionName === 'home' ? 'home' : sectionName) + '"]');
+    if (desktopLink) desktopLink.classList.add('active');
+
+    // Update mobile nav active state (if mobile nav exists)
+    const mobileBtns = document.querySelectorAll('.mobile-nav-btn');
+    if (mobileBtns.length) {
+        mobileBtns.forEach(b => b.classList.remove('active'));
+        let targetLabel = 'Home';
+        if (sectionName === 'products') targetLabel = 'Produk';
+        if (sectionName === 'cart') targetLabel = 'Keranjang';
+        const mobileBtn = document.querySelector('.mobile-nav-btn[aria-label="' + targetLabel + '"]');
+        if (mobileBtn) mobileBtn.classList.add('active');
+    }
 }
 
 // Show products
@@ -378,7 +467,10 @@ function addToCart(productId) {
 // Update cart count
 function updateCartCount() {
     const count = cart.reduce((total, item) => total + item.quantity, 0);
-    document.getElementById('cartCount').textContent = count;
+    const desktopCountEl = document.getElementById('cartCount');
+    const mobileCountEl = document.getElementById('mobileCartCount');
+    if (desktopCountEl) desktopCountEl.textContent = count;
+    if (mobileCountEl) mobileCountEl.textContent = count;
 }
 
 // Update cart display
@@ -407,15 +499,18 @@ function updateCartDisplay() {
         
         return `
             <div class="cart-item">
-                <div>
+                <div class="cart-thumb">
+                    <img src="${item.image}" alt="${item.name}" onerror="this.src=''; this.style.display='none'; this.parentElement.innerHTML='🖥️';">
+                </div>
+                <div class="cart-info">
                     <h4>${item.name}</h4>
                     <p>${formattedPrice} x ${item.quantity} = ${totalPrice}</p>
                 </div>
-                <div>
-                    <button onclick="updateQuantity(${item.id}, -1)" style="background: #C3073F; color: white; border: none; padding: 0.3rem 0.6rem; margin: 0 0.2rem; border-radius: 3px; cursor: pointer;">-</button>
+                <div class="cart-actions">
+                    <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
                     <span>${item.quantity}</span>
-                    <button onclick="updateQuantity(${item.id}, 1)" style="background: #C3073F; color: white; border: none; padding: 0.3rem 0.6rem; margin: 0 0.2rem; border-radius: 3px; cursor: pointer;">+</button>
-                    <button onclick="removeFromCart(${item.id})" style="background: #A0052F; color: white; border: none; padding: 0.3rem 0.6rem; margin-left: 0.5rem; border-radius: 3px; cursor: pointer;">Hapus</button>
+                    <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                    <button class="remove-btn" onclick="removeFromCart(${item.id})">Hapus</button>
                 </div>
             </div>
         `;
@@ -608,11 +703,16 @@ function applyFilters() {
 
 // Reset all filters
 function resetFilters() {
-    document.getElementById('sizeFilter').value = 'all';
-    document.getElementById('categoryFilter').value = 'all';
-    document.getElementById('brandFilter').value = 'all';
-    document.getElementById('priceFilter').value = 'all';
-    document.getElementById('searchInput').value = '';
+    const sizeEl = document.getElementById('sizeFilter');
+    const categoryEl = document.getElementById('categoryFilter');
+    const brandEl = document.getElementById('brandFilter');
+    const priceEl = document.getElementById('priceFilter');
+    const searchEl = document.getElementById('searchInput');
+    if (sizeEl) sizeEl.value = 'all';
+    if (categoryEl) categoryEl.value = 'all';
+    if (brandEl) brandEl.value = 'all';
+    if (priceEl) priceEl.value = 'all';
+    if (searchEl) searchEl.value = '';
     applyFilters();
     showNotification('Filter berhasil direset!');
 }
